@@ -12,8 +12,5 @@ A browser-based password strength checker that scores passwords from 0–100 and
 ## Tech
 - HTML, CSS, JavaScript
 
-## Live Demo
-Add your GitHub Pages link here once published.
-
 ## Notes
 Educational project demonstrating secure password best practices.
