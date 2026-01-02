@@ -109,3 +109,57 @@ function render({ score, label, tips }) {
     tipsList.appendChild(li);
   });
 }
+
+// ---------- Turtle "programmable gif" ----------
+const turtle = document.getElementById("turtle");
+
+if (turtle) {
+  // Use an inline SVG as the turtle image (no external assets needed)
+  const svg = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="72" height="48" viewBox="0 0 72 48">
+    <rect width="72" height="48" rx="10" fill="rgba(255,255,255,0.03)"/>
+    <!-- Shell -->
+    <ellipse cx="36" cy="26" rx="18" ry="12" fill="#3ccf7f"/>
+    <ellipse cx="36" cy="26" rx="13" ry="8" fill="#2aa866"/>
+    <!-- Head -->
+    <circle cx="56" cy="24" r="6" fill="#38b76f"/>
+    <circle cx="58" cy="22" r="1.5" fill="#0f1115"/>
+    <!-- Legs -->
+    <ellipse cx="25" cy="36" rx="5" ry="3" fill="#2aa866"/>
+    <ellipse cx="47" cy="36" rx="5" ry="3" fill="#2aa866"/>
+    <ellipse cx="24" cy="18" rx="4" ry="2.5" fill="#2aa866"/>
+    <ellipse cx="48" cy="18" rx="4" ry="2.5" fill="#2aa866"/>
+    <!-- Tail -->
+    <polygon points="18,26 10,22 12,30" fill="#2aa866"/>
+  </svg>`;
+
+  const sprite = turtle.querySelector(".turtle-sprite");
+  sprite.style.backgroundImage = `url("data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}")`;
+
+  // Movement settings
+  const stage = turtle.closest(".turtle-stage");
+  let x = -80;               // starting X
+  let speed = 1.2;           // pixels per frame (adjust as desired)
+  let lastWidth = 0;
+
+  function animateTurtle() {
+    const stageWidth = stage.clientWidth;
+
+    // If stage size changes, ensure we stay smooth
+    if (stageWidth !== lastWidth) lastWidth = stageWidth;
+
+    x += speed;
+
+    // Move the turtle across
+    turtle.style.transform = `translate(${x}px, -50%)`;
+
+    // Loop when off-screen
+    if (x > stageWidth + 80) {
+      x = -80;
+    }
+
+    requestAnimationFrame(animateTurtle);
+  }
+
+  requestAnimationFrame(animateTurtle);
+}
