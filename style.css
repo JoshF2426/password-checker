@@ -136,3 +136,44 @@ input:focus{
   color: var(--muted);
   font-size: .85rem;
 }
+/* Turtle stage */
+.turtle-stage{
+  position: relative;
+  width: 100%;
+  height: 90px;
+  margin-top: 14px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: rgba(0,0,0,.18);
+  overflow: hidden;
+}
+
+/* Turtle container moves across screen */
+.turtle{
+  position: absolute;
+  left: -80px; /* start off-screen */
+  top: 50%;
+  transform: translateY(-50%);
+  will-change: transform;
+}
+
+/* Sprite area */
+.turtle-sprite{
+  width: 72px;
+  height: 48px;
+  image-rendering: pixelated;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 10px;
+}
+
+/* Simple "walking" illusion (feet bob) */
+@keyframes turtleBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(2px); }
+}
+
+.turtle-sprite{
+  animation: turtleBob 0.30s infinite linear;
+}
+
