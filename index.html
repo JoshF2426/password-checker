@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Password Strength Checker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="card">
+    <header class="header">
+      <h1>Password Strength Checker</h1>
+      <p class="sub">
+        Type a password to see a strength score and recommendations. (Client-side only.)
+      </p>
+    </header>
+
+    <section class="input-area">
+      <label for="pw" class="label">Password</label>
+      <div class="pw-row">
+        <input id="pw" type="password" placeholder="Enter a password..." autocomplete="new-password" />
+        <button id="toggle" class="btn-secondary" type="button" aria-pressed="false">Show</button>
+      </div>
+      <p class="hint">Tip: Use 12+ characters with a mix of types.</p>
+    </section>
+
+    <section class="meter-area" aria-live="polite">
+      <div class="strength-row">
+        <span class="label">Strength</span>
+        <span id="strengthText" class="strength-text">—</span>
+      </div>
+
+      <div class="bar-wrap" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div id="bar" class="bar"></div>
+      </div>
+
+      <div class="score-row">
+        <span class="label">Score</span>
+        <span id="scoreText" class="score-text">0 / 100</span>
+      </div>
+    </section>
+
+    <section class="feedback">
+      <h2>Recommendations</h2>
+      <ul id="tips" class="tips">
+        <li>Start typing to see suggestions.</li>
+      </ul>
+    </section>
+
+    <footer class="footer">
+      <p>
+        Note: This demo does not send or store your password. It runs entirely in your browser.
+      </p>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
