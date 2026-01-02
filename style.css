@@ -136,11 +136,10 @@ input:focus{
   color: var(--muted);
   font-size: .85rem;
 }
-/* Turtle stage */
 .turtle-stage{
   position: relative;
   width: 100%;
-  height: 90px;
+  height: 110px;
   margin-top: 14px;
   border: 1px solid var(--border);
   border-radius: 14px;
@@ -148,32 +147,19 @@ input:focus{
   overflow: hidden;
 }
 
-/* Turtle container moves across screen */
-.turtle{
+/* The gif itself */
+.turtle-gif{
   position: absolute;
-  left: -80px; /* start off-screen */
+  left: -120px;            /* start off-screen */
   top: 50%;
   transform: translateY(-50%);
-  will-change: transform;
-}
-
-/* Sprite area */
-.turtle-sprite{
-  width: 72px;
-  height: 48px;
+  height: 64px;            /* adjust size */
   image-rendering: pixelated;
-  background-repeat: no-repeat;
-  background-size: cover;
-  border-radius: 10px;
+  image-rendering: crisp-edges;
+  animation: turtleMove 8s linear infinite;
 }
 
-/* Simple "walking" illusion (feet bob) */
-@keyframes turtleBob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(2px); }
+@keyframes turtleMove{
+  from { left: -120px; }
+  to   { left: 110%; }
 }
-
-.turtle-sprite{
-  animation: turtleBob 0.30s infinite linear;
-}
-
